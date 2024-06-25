@@ -1,20 +1,18 @@
 import "./App.css";
-import SubmitButton from "./components/SubmitButton";
 import ProjectTable from "./components/ProjectTable";
-import { useId, useState } from "react";
+import { useState } from "react";
+import AddProjectForm from "./components/AddProjectForm";
 
 function App() {
   const [projects, setProjects] = useState(InitialProjects);
+  const [enable, setEnabled] = useState(false);
 
   const handleClick = () => {
-    setProjects([
-      {
-        id: crypto.randomUUID(),
-        title: "Test",
-        shortDescription: "Test",
-      },
-      ...projects,
-    ]);
+    setEnabled(!enable);
+  };
+
+  const handleAddProject = (project) => {
+    setProjects([...projects, project]);
   };
   return (
     <>
@@ -23,8 +21,11 @@ function App() {
         <h2>Manage your projects blazingly fast</h2>
       </div>
 
-      <SubmitButton onClick={handleClick} />
+      <button type="button" onClick={handleClick}>
+        Show
+      </button>
       <ProjectTable projects={projects} />
+      {enable && <AddProjectForm handleSubmit={handleAddProject} />}
     </>
   );
 }
@@ -34,11 +35,15 @@ const InitialProjects = [
     id: crypto.randomUUID(),
     title: "Hello World",
     shortDescription: "Short Description",
+    url: "http://localhost:com",
+    status: "done",
   },
   {
     id: crypto.randomUUID(),
     title: "Hi Dev",
     shortDescription: "Short Description",
+    url: "http://localhost:com",
+    status: "done",
   },
 ];
 
