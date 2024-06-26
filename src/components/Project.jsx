@@ -1,8 +1,8 @@
 import "./Project.css";
 
-function Project({ data }) {
+function Project({ data, onClick }) {
   return (
-    <div className="project">
+    <div onClick={onClick} className="project">
       <h3>ID: {data.id}</h3>
       <h3>Title: {data.title}</h3>
       <h4>Description: {data.shortDescription}</h4>

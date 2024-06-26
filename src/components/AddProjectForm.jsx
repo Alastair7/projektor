@@ -34,7 +34,7 @@ function AddProjectForm({ handleSubmit }) {
   };
   return (
     <form onSubmit={onSubmit} id="add-project-form">
-      <label for="project-name">Name:</label>
+      <label htmlFor="project-name">Name:</label>
       <input
         type="text"
         name="title"
@@ -44,7 +44,7 @@ function AddProjectForm({ handleSubmit }) {
         required
       />
 
-      <label for="project-short-description">Short Description:</label>
+      <label htmlFor="project-short-description">Short Description:</label>
       <textarea
         name="shortDescription"
         id="project-short-description"
@@ -52,7 +52,7 @@ function AddProjectForm({ handleSubmit }) {
         onChange={onChange}
       />
 
-      <label for="project-url">URL:</label>
+      <label htmlFor="project-url">URL:</label>
       <input
         type="url"
         name="url"
@@ -61,7 +61,7 @@ function AddProjectForm({ handleSubmit }) {
         onChange={onChange}
       />
 
-      <label for="project-status">Status:</label>
+      <label htmlFor="project-status">Status:</label>
       <select
         name="status"
         id="project-status"

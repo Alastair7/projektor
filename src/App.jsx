@@ -6,6 +6,7 @@ import AddProjectForm from "./components/AddProjectForm";
 function App() {
   const [projects, setProjects] = useState(InitialProjects);
   const [enable, setEnabled] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleClick = () => {
     setEnabled(!enable);
@@ -14,6 +15,13 @@ function App() {
   const handleAddProject = (project) => {
     setProjects([...projects, project]);
   };
+
+  const handleProjectSelect = (projectId) => {
+    const project = projects.find((p) => p.id === projectId);
+    alert(project.id);
+    setSelectedProject(project);
+  };
+
   return (
     <>
       <div id="header-app">
@@ -24,7 +32,7 @@ function App() {
       <button type="button" onClick={handleClick}>
         Show
       </button>
-      <ProjectTable projects={projects} />
+      <ProjectTable projects={projects} onSelect={handleProjectSelect} />
       {enable && <AddProjectForm handleSubmit={handleAddProject} />}
     </>
   );
