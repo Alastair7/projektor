@@ -1,44 +1,9 @@
+import { useState } from "react";
 import "./App.css";
 import ProjectTable from "./components/ProjectTable";
-import { useState } from "react";
 import AddProjectForm from "./components/AddProjectForm";
 
-function App() {
-  const [projects, setProjects] = useState(InitialProjects);
-  const [enable, setEnabled] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  const handleClick = () => {
-    setEnabled(!enable);
-  };
-
-  const handleAddProject = (project) => {
-    setProjects([...projects, project]);
-  };
-
-  const handleProjectSelect = (projectId) => {
-    const project = projects.find((p) => p.id === projectId);
-    alert(project.id);
-    setSelectedProject(project);
-  };
-
-  return (
-    <>
-      <div id="header-app">
-        <h1>Projektor</h1>
-        <h2>Manage your projects blazingly fast</h2>
-      </div>
-
-      <button type="button" onClick={handleClick}>
-        Show
-      </button>
-      <ProjectTable projects={projects} onSelect={handleProjectSelect} />
-      {enable && <AddProjectForm handleSubmit={handleAddProject} />}
-    </>
-  );
-}
-
-const InitialProjects = [
+const INITIALPROJECTS = [
   {
     id: crypto.randomUUID(),
     title: "Hello World",
@@ -54,5 +19,33 @@ const InitialProjects = [
     status: "done",
   },
 ];
+
+function App() {
+  const [showForm, setShowForm] = useState(false);
+  const [projects, setProjects] = useState(INITIALPROJECTS);
+
+  const handleFormVisibility = () => {
+    setShowForm(!showForm);
+  };
+
+  const handleSubmit = (toAddProject) => {
+    setProjects([...projects, toAddProject]);
+  };
+
+  return (
+    <>
+      <div id="header-app">
+        <h1>Projektor</h1>
+        <h2>Manage your projects blazingly fast</h2>
+      </div>
+
+      <button type="button" onClick={handleFormVisibility}>
+        Show
+      </button>
+      {showForm && <AddProjectForm handleSubmit={handleSubmit} />}
+      <ProjectTable projects={projects} />
+    </>
+  );
+}
 
 export default App;

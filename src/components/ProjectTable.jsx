@@ -1,10 +1,10 @@
 import Project from "./Project";
 
-function ProjectTable({ projects, onSelect }) {
+function ProjectTable({ projects }) {
   return (
     <div>
       {projects.map((item) => (
-        <Project onClick={() => onSelect(item.id)} key={item.id} data={item} />
+        <Project key={item.id} data={item} />
       ))}
     </div>
   );
