@@ -2,7 +2,7 @@ import "./Project.css";
 import { useRef } from "react";
 import ProjectDetails from "./ProjectDetails";
 
-function Project({ data }) {
+function Project({ data, onDeleteClick }) {
   const dialogRef = useRef(null);
 
   const toggleDialog = () => {
@@ -23,6 +23,8 @@ function Project({ data }) {
         <h4>Description: {data.shortDescription}</h4>
         <h4>URL: {data.url}</h4>
         <h4>Status: {data.status}</h4>
+
+        <button onClick={() => onDeleteClick(data.id)}>DELETE</button>
       </div>
       <ProjectDetails
         project={data}

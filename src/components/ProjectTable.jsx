@@ -1,10 +1,10 @@
 import Project from "./Project";
 
-function ProjectTable({ projects }) {
+function ProjectTable({ projects, onDeleteClick }) {
   return (
     <div>
       {projects.map((item) => (
-        <Project key={item.id} data={item} />
+        <Project onDeleteClick={onDeleteClick} key={item.id} data={item} />
       ))}
     </div>
   );

@@ -32,6 +32,17 @@ function App() {
     setProjects([...projects, toAddProject]);
   };
 
+  const handleProjectDelete = (projectId) => {
+    const newProjectsList = projects.filter(
+      (project) => project.id !== projectId
+    );
+
+    console.log("DELETE", projectId);
+    console.log(newProjectsList);
+
+    setProjects(newProjectsList);
+  };
+
   return (
     <>
       <div id="header-app">
@@ -43,7 +54,7 @@ function App() {
         Show
       </button>
       {showForm && <AddProjectForm handleSubmit={handleSubmit} />}
-      <ProjectTable projects={projects} />
+      <ProjectTable projects={projects} onDeleteClick={handleProjectDelete} />
     </>
   );
 }
