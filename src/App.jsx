@@ -37,9 +37,6 @@ function App() {
       (project) => project.id !== projectId
     );
 
-    console.log("DELETE", projectId);
-    console.log(newProjectsList);
-
     setProjects(newProjectsList);
   };
 
