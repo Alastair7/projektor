@@ -22,10 +22,19 @@ function Project({ data, onDeleteClick }) {
           <h3>{data.title}</h3>
           <h4>{data.shortDescription}</h4>
         </div>
-        <button onClick={() => onDeleteClick(data.id)}>
-          <img src="src/assets/trash.svg" />
-        </button>
-        <h4>{data.status}</h4>
+        <div className="project-container-actions-item">
+          <div className="project-container-actions-buttons">
+            <button onClick={() => onDeleteClick(data.id)}>
+              <img src="src/assets/trash.svg" />
+            </button>
+
+            <button>
+              {" "}
+              <img src="src/assets/trash.svg" />
+            </button>
+          </div>
+          <h4>{data.status}</h4>
+        </div>
       </div>
       <ProjectDetails
         project={data}
