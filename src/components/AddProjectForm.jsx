@@ -1,81 +1,37 @@
-import { useState } from "react";
-function AddProjectForm({ handleSubmit }) {
-  const [formData, setFormData] = useState({
+import "./AddProjectForm.css";
+import { useForm } from "react-hook-form";
+function AddProjectForm({ handleAddProject }) {
+  const { register, handleSubmit, reset } = useForm({
     title: "",
     shortDescription: "",
     url: "",
     status: "idea",
   });
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (data) => {
     const newProject = {
       id: crypto.randomUUID(),
-      ...formData,
+      ...data,
     };
 
-    handleSubmit(newProject);
+    handleAddProject(newProject);
 
-    setFormData({
-      title: "",
-      shortDescription: "",
-      url: "",
-      status: "idea",
-    });
+    reset();
   };
   return (
-    <form onSubmit={onSubmit} id="add-project-form">
-      <label htmlFor="project-name">Name:</label>
-      <input
-        type="text"
-        name="title"
-        id="project-name"
-        value={formData.title}
-        onChange={onChange}
-        required
-      />
-
-      <label htmlFor="project-short-description">Short Description:</label>
-      <textarea
-        name="shortDescription"
-        id="project-short-description"
-        value={formData.shortDescription}
-        onChange={onChange}
-      />
-
-      <label htmlFor="project-url">URL:</label>
-      <input
-        type="url"
-        name="url"
-        id="project-url"
-        value={formData.url}
-        onChange={onChange}
-      />
-
-      <label htmlFor="project-status">Status:</label>
-      <select
-        name="status"
-        id="project-status"
-        form="add-project-form"
-        value={formData.status}
-        onChange={onChange}
-      >
+    <form onSubmit={handleSubmit(onSubmit)} id="add-project-form">
+      <h1>ADD PROJECT</h1>
+      <input {...register("title")} placeholder="Title" />
+      <textarea {...register("shortDescription")} placeholder="Description" />
+      <input {...register("url")} placeholder="url" />
+      <select {...register("status")} defaultValue="idea">
         <option value="done">Done</option>
         <option value="in-progress">In Progress</option>
         <option value="abandoned">Abandoned</option>
         <option value="idea">Idea</option>
       </select>
 
-      <input type="submit" value="Add project" />
+      <input id="submitProjectButton" type="submit" value="Add project" />
     </form>
   );
 }

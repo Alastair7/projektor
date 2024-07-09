@@ -28,7 +28,7 @@ function App() {
     setShowForm(!showForm);
   };
 
-  const handleSubmit = (toAddProject) => {
+  const handleAddProject = (toAddProject) => {
     setProjects([...projects, toAddProject]);
   };
 
@@ -50,7 +50,7 @@ function App() {
       <button type="button" onClick={handleFormVisibility}>
         Show
       </button>
-      {showForm && <AddProjectForm handleSubmit={handleSubmit} />}
+      {showForm && <AddProjectForm handleAddProject={handleAddProject} />}
       <ProjectTable projects={projects} onDeleteClick={handleProjectDelete} />
     </>
   );

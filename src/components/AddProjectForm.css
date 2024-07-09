@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  background-color: rgb(46, 34, 54);
+}
+
+label {
+  font-weight: bold;
+  color: whitesmoke;
+}
+input {
+  font-size: medium;
+  color: black;
+  background-color: rgb(255, 253, 255);
+  border-radius: 3px;
+}
+
+#submitProjectButton {
+  background-color: white;
+  color: green;
+}
